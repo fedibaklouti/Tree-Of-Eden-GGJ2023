@@ -1,0 +1,145 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Sprites/darksand.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/TreeShader.tres" type="Material" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Characters/Player.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 0.46875, 0.392933, 0.285645, 1, 0.363281, 0, 0.323547, 1 )
+
+[sub_resource type="GradientTexture2D" id=6]
+gradient = SubResource( 5 )
+fill_from = Vector2( 0, 1 )
+fill_to = Vector2( 0, 0 )
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 3
+light_mode = 1
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.24581, 0.793296, 1 )
+colors = PoolColorArray( 0.635294, 0.552941, 0.392157, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.635294, 0.552941, 0.392157, 1 )
+
+[sub_resource type="GradientTexture2D" id=3]
+flags = 3
+gradient = SubResource( 2 )
+width = 224
+height = 800
+fill_from = Vector2( 1, 0 )
+fill_to = Vector2( 0, 0 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 30.5, 30 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="skylayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="skylayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 6 )
+expand = true
+
+[node name="shadingLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="TextureRect2" type="Sprite" parent="shadingLayer"]
+material = SubResource( 1 )
+position = Vector2( 320, 336 )
+scale = Vector2( 2.28571, 1 )
+texture = SubResource( 3 )
+region_rect = Rect2( 0, 0, 500, 500 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enable = true
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer"]
+material = ExtResource( 3 )
+texture = ExtResource( 1 )
+polygon = PoolVector2Array( 576, -64, 512, -56, 128, -56, 64, -64, 64, 576, 128, 592, 512, 592, 576, 576 )
+uv = PoolVector2Array( 576, -56, 512, -56, 128, -56, 64, -56, 64, 592, 128, 592, 512, 592, 576, 592 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 64.0
+margin_right = 576.0
+margin_bottom = 360.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 512, 360 )
+own_world = true
+transparent_bg = true
+hdr = false
+disable_3d = true
+usage = 0
+
+[node name="Player" parent="ViewportContainer/Viewport" instance=ExtResource( 5 )]
+position = Vector2( 267, 216 )
+collision_mask = 9
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="ViewportContainer/Viewport"]
+position = Vector2( 460, 304 )
+collision_layer = 8
+collision_mask = 9
+
+[node name="Sprite" type="Sprite" parent="ViewportContainer/Viewport/StaticBody2D6"]
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportContainer/Viewport/StaticBody2D6"]
+position = Vector2( -0.5, -1 )
+shape = SubResource( 4 )
+one_way_collision = true
+one_way_collision_margin = 100.0
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="ViewportContainer/Viewport"]
+position = Vector2( 388, 304 )
+collision_layer = 8
+collision_mask = 9
+
+[node name="Sprite" type="Sprite" parent="ViewportContainer/Viewport/StaticBody2D7"]
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportContainer/Viewport/StaticBody2D7"]
+position = Vector2( -0.5, -1 )
+shape = SubResource( 4 )
+one_way_collision = true
+one_way_collision_margin = 100.0
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="ViewportContainer/Viewport"]
+position = Vector2( 317, 304 )
+collision_layer = 8
+collision_mask = 9
+
+[node name="Sprite" type="Sprite" parent="ViewportContainer/Viewport/StaticBody2D8"]
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportContainer/Viewport/StaticBody2D8"]
+position = Vector2( -0.5, -1 )
+shape = SubResource( 4 )
+one_way_collision = true
+one_way_collision_margin = 100.0
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="ViewportContainer/Viewport"]
+position = Vector2( 245, 304 )
+collision_layer = 8
+collision_mask = 9
+
+[node name="Sprite" type="Sprite" parent="ViewportContainer/Viewport/StaticBody2D9"]
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportContainer/Viewport/StaticBody2D9"]
+position = Vector2( -0.5, -1 )
+shape = SubResource( 4 )
+one_way_collision = true
+one_way_collision_margin = 100.0
