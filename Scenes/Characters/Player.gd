@@ -20,11 +20,45 @@ var health = maxHealth
 var alive = true
 var isInvulnurable = false
 
+
+var inventory = [
+	{
+		"type": "mushroom",
+		"ammo": 0
+	},
+	{
+		"type": "leaf",
+		"ammo": 0
+	},
+	{
+		"type":"flower",
+		"ammo": 0
+	}
+]
+
+var equipped = inventory[0]
+
 var treeMaterial = load("res://Scenes/TreeShader.tres")
 
 func _ready():
 	pass
 	
+
+func setEquipped(index):
+	equipped = inventory[index]
+	print("equipped ", equipped)
+
+func _input(event):
+	if Input.is_action_just_pressed("equip_mushroom"):
+		setEquipped(0)
+	if Input.is_action_just_pressed("equip_leaf"):
+		setEquipped(1)
+	if Input.is_action_just_pressed("equip_flower"):
+		setEquipped(2)
+	if Input.is_action_just_pressed("spear_attack"):
+		spearAttack()
+	if Input.is_action_just_pressed("whip_attack"):
+		whip()
 	
 func whip():
 	print("Whipping")
