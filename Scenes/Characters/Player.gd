@@ -15,6 +15,8 @@ enum Player_Actions {NOTHING = 0, IS_WHIPPING = 1, IS_SWINGING=2}
 var PlayerState = Player_States.IS_IDLE
 var PlayerAction = Player_Actions.NOTHING
 
+
+
 const maxHealth = 3
 var health = maxHealth 
 var alive = true
@@ -24,15 +26,18 @@ var isInvulnurable = false
 var inventory = [
 	{
 		"type": "mushroom",
-		"ammo": 0
+		"ammo": 0,
+		"instance": preload("res://Scenes/gimmicks/mushroom.tscn")
 	},
 	{
 		"type": "leaf",
-		"ammo": 0
+		"ammo": 0,
+		"instance": preload("res://Scenes/gimmicks/leaf.tscn")
 	},
 	{
 		"type":"flower",
-		"ammo": 0
+		"ammo": 0,
+		"instance": preload("res://Scenes/gimmicks/flower.tscn")
 	}
 ]
 
@@ -44,9 +49,19 @@ func _ready():
 	pass
 	
 
+onready var floorcast = $raycasts/floorcast
+
 func setEquipped(index):
 	equipped = inventory[index]
 	print("equipped ", equipped)
+	
+func plant():
+	if floorcast.is_colliding():
+		var plant_instance = equipped.instance.instance()
+		$"..".add_child(plant_instance)
+
+		plant_instance.transform = transform
+	pass
 
 func _input(event):
 	if Input.is_action_just_pressed("equip_mushroom"):
@@ -59,7 +74,9 @@ func _input(event):
 		spearAttack()
 	if Input.is_action_just_pressed("whip_attack"):
 		whip()
-	
+	if Input.is_action_just_pressed("action_plant"):
+		plant()
+		
 func whip():
 	print("Whipping")
 	
@@ -69,6 +86,15 @@ func spearAttack():
 	print("Spearing")
 	
 	pass 
+
+
+func bounce():
+
+	var currentVelocity = velocity.y
+	velocity.y = -currentVelocity*1.2
+	
+	pass
+
 
 func getHit():
 	if !isInvulnurable:
