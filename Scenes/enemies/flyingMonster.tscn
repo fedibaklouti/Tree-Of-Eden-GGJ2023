@@ -50,7 +50,6 @@ verticalOffset = -1.6
 texture = ExtResource( 1 )
 flip_h = true
 hframes = 3
-frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

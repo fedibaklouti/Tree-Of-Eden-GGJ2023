@@ -69,6 +69,8 @@ anims/invulframes = SubResource( 2 )
 
 [node name="spearAttackHitbox" type="Area2D" parent="attackhitbox"]
 position = Vector2( 80, 0 )
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackhitbox/spearAttackHitbox"]
 modulate = Color( 1, 0, 0, 1 )
@@ -76,6 +78,8 @@ shape = SubResource( 3 )
 
 [node name="whipAttackHitbox" type="Area2D" parent="attackhitbox"]
 position = Vector2( 56, 0 )
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackhitbox/whipAttackHitbox"]
 position = Vector2( 0, -64 )

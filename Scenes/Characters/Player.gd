@@ -117,11 +117,11 @@ func damageTracker():
 		if $raycasts/frontcast.is_colliding():
 			getHit()
 			velocity.x -= 500
-			velocity.y -= 100
+			velocity.y -= 300
 		elif $raycasts/backcast.is_colliding():
 			getHit()
 			velocity.x += 500
-			velocity.y -= 100
+			velocity.y -= 300
 	
 	
 	pass
@@ -179,5 +179,8 @@ func _physics_process(delta):
 	else: 
 		velocity.x = 0
 		death()
-		treeMaterial.set_shader_param("motion", Vector2(0, velocity.y))
+		if !is_on_floor():
+			treeMaterial.set_shader_param("motion", Vector2(0, velocity.y))
+		else:
+			treeMaterial.set_shader_param("motion", Vector2(0, 0))
 	velocity = move_and_slide(velocity, UP, true, 4)
