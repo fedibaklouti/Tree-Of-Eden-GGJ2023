@@ -100,12 +100,30 @@ func getHit():
 	if !isInvulnurable:
 		health -= 1
 		isInvulnurable=true
-		yield(get_tree().create_timer(1), "timeout")
-		isInvulnurable=false
+		if health > 0:
+			$invulplayer.play("invulframes")
+			yield(get_tree().create_timer(2), "timeout")
+			isInvulnurable=false
+			$invulplayer.stop()
+			modulate.a = 1
 	
 func jump():
 	if is_on_floor():
 		velocity.y -= JUMPHEIGHT
+	pass
+	
+func damageTracker():
+	if !isInvulnurable:
+		if $raycasts/frontcast.is_colliding():
+			getHit()
+			velocity.x -= 500
+			velocity.y -= 100
+		elif $raycasts/backcast.is_colliding():
+			getHit()
+			velocity.x += 500
+			velocity.y -= 100
+	
+	
 	pass
 
 func playerControls():
@@ -133,19 +151,33 @@ var treeUVSpeed = 0
 	
 func _physics_process(delta):
 	alive = health > 0
+	velocity.y += GRAVITY * delta
+	velocity.y = clamp(velocity.y, -1500, 1500)
+	
 	if alive:
+		if dir != 0:
+			$attackhitbox/spearAttackHitbox.position.x = 80 * dir
+			$attackhitbox/whipAttackHitbox.position.x = 56 * dir
+		damageTracker()
 		if dir == 0:
 			treeUVSpeed = lerp(treeUVSpeed, 0, 0.8)
 		else:
 			treeUVSpeed = dir * 4
 		if PlayerState == Player_States.IS_RUNNING:
-			treeMaterial.set_shader_param("motion", velocity)
+			if !is_on_floor():
+				treeMaterial.set_shader_param("motion", velocity)
+			else:
+				treeMaterial.set_shader_param("motion", Vector2(velocity.x, 0))
 		else:
-			treeMaterial.set_shader_param("motion", Vector2(0, velocity.y))
-		velocity.y = clamp(velocity.y, -1500, 1500)
-		velocity.y += GRAVITY * delta
+			if !is_on_floor():
+				treeMaterial.set_shader_param("motion", Vector2(0, velocity.y))
+			else: 
+				treeMaterial.set_shader_param("motion", Vector2(0, 0))
 		health = clamp(health, 0, maxHealth)
 		playerControls()
-		velocity = move_and_slide(velocity, UP, true, 4)
+
 	else: 
+		velocity.x = 0
 		death()
+		treeMaterial.set_shader_param("motion", Vector2(0, velocity.y))
+	velocity = move_and_slide(velocity, UP, true, 4)
