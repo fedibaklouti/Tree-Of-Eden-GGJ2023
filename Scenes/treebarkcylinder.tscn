@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/TreeShader.tres" type="Material" id=1]
+[ext_resource path="res://Sprites/background/tree bark 3.png" type="Texture" id=2]
+
+[node name="Polygon2D" type="Polygon2D"]
+material = ExtResource( 1 )
+texture = ExtResource( 2 )
+polygon = PoolVector2Array( 576, -64, 512, -56, 128, -56, 64, -64, 64, 576, 128, 592, 512, 592, 576, 576 )
+uv = PoolVector2Array( 576, -56, 512, -56, 128, -56, 64, -56, 64, 592, 128, 592, 512, 592, 576, 592 )
+__meta__ = {
+"_edit_lock_": true
+}

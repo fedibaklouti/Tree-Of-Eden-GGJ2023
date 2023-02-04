@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 
 window/size/width=640
 window/size/height=360
+window/size/fullscreen=true
 window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
@@ -119,10 +120,12 @@ action_plant={
 2d_render/layer_2="enemy"
 2d_render/layer_3="item"
 2d_render/layer_4="static"
+2d_render/layer_5="damage"
 2d_physics/layer_1="player"
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="item"
 2d_physics/layer_4="static"
+2d_physics/layer_5="damage"
 
 [physics]
 

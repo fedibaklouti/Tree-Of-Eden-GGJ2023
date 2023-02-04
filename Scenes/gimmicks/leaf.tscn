@@ -1,10 +1,78 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/gimmicks/gimmickScript.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Plants/mushroom.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Plants/leaf_base.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Plants/leaf.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/gimmicks/leaf.gd" type="Script" id=4]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 17 )
+[sub_resource type="RayShape2D" id=4]
+slips_on_slope = true
+
+[sub_resource type="RayShape2D" id=3]
+length = 10.0
+slips_on_slope = true
+
+[sub_resource type="RayShape2D" id=5]
+slips_on_slope = true
+
+[sub_resource type="Animation" id=1]
+resource_name = "bounce"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.7 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 14 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "spawn"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 7.72749, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 800 ), Vector2( 0, 256 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 84, 80 )
 
 [node name="leaf" type="StaticBody2D"]
 collision_layer = 4
@@ -12,10 +80,92 @@ script = ExtResource( 1 )
 gimmickType = 1
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.0745098, 0.717647, 0.0352941, 1 )
+position = Vector2( 0, -26.1509 )
+scale = Vector2( 1, 1.69811 )
+z_index = -1
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -7 )
-shape = SubResource( 2 )
+[node name="leaf" type="StaticBody2D" parent="."]
+position = Vector2( -3, -56 )
+collision_layer = 0
+script = ExtResource( 4 )
+leafDirection = -1
+
+[node name="Sprite" type="Sprite" parent="leaf"]
+texture = ExtResource( 3 )
+offset = Vector2( -30, -8 )
+
+[node name="CollisionShape2D2" type="CollisionPolygon2D" parent="leaf"]
+position = Vector2( -61, -8 )
+polygon = PoolVector2Array( 16, -7, 32, -8, 48, -5, 64, 8, 48, 5, 35, 4, 25, 3, 14, 3, 3, 4, 2, 2 )
 one_way_collision = true
+one_way_collision_margin = 2.0
+
+[node name="leafArea" type="Area2D" parent="leaf"]
+collision_layer = 8
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="leaf/leafArea"]
+position = Vector2( -53, -8 )
+rotation = 3.14159
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="leaf/leafArea"]
+position = Vector2( -30, -14.5 )
+rotation = 3.14159
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="leaf/leafArea"]
+position = Vector2( -41, -16.5 )
+rotation = 3.14159
+shape = SubResource( 3 )
+
+[node name="leaf2" type="StaticBody2D" parent="."]
+position = Vector2( 3, -9 )
+collision_layer = 0
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="leaf2"]
+texture = ExtResource( 3 )
+offset = Vector2( 30, -8 )
+
+[node name="CollisionShape2D2" type="CollisionPolygon2D" parent="leaf2"]
+position = Vector2( -1, -8 )
+polygon = PoolVector2Array( 16, -7, 32, -8, 48, -5, 64, 8, 48, 5, 35, 4, 25, 3, 14, 3, 3, 4, 2, 2 )
+one_way_collision = true
+one_way_collision_margin = 2.0
+
+[node name="leafArea" type="Area2D" parent="leaf2"]
+position = Vector2( 59, -8 )
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leaf2/leafArea"]
+position = Vector2( -30, -4 )
+rotation = 3.14159
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="leaf2/leafArea"]
+position = Vector2( -6, 0 )
+rotation = 3.14159
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="leaf2/leafArea"]
+position = Vector2( -17, -7 )
+rotation = 3.14159
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/bounce = SubResource( 1 )
+anims/spawn = SubResource( 2 )
+
+[node name="plantLimiter" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plantLimiter"]
+position = Vector2( 4, -32 )
+shape = SubResource( 6 )
+
+[connection signal="body_entered" from="leaf/leafArea" to="leaf" method="_on_leafArea_body_entered"]
+[connection signal="body_exited" from="leaf/leafArea" to="leaf" method="_on_leafArea_body_exited"]
+[connection signal="body_entered" from="leaf2/leafArea" to="leaf2" method="_on_leafArea_body_entered"]
+[connection signal="body_exited" from="leaf2/leafArea" to="leaf2" method="_on_leafArea_body_exited"]
+[connection signal="body_entered" from="plantLimiter" to="." method="_on_plantLimiter_body_entered"]
+[connection signal="body_exited" from="plantLimiter" to="." method="_on_plantLimiter_body_exited"]

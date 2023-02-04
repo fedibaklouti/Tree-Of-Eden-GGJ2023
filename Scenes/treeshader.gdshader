@@ -11,7 +11,7 @@ void fragment(){
 	vec2 newuv = UV;
 	//newuv.x += uvspeed;0
 	vec2 motionClamped = clamp(motion, vec2(-maxSpeed, -maxSpeed), vec2(maxSpeed,maxSpeed));
-	newuv += (offset + TIME * motionClamped);
+	newuv += (motionClamped + TIME * motionClamped);
 	vec4 c = texture(TEXTURE, newuv);
 	COLOR = c;
 }

@@ -4,8 +4,12 @@ enum gimmickTypes {MUSHROOM = 0, LEAF= 1, FLOWER=2 }
 
 export (gimmickTypes) var gimmickType 
 
+export var leafDirection = 1
+
+onready var animator = $AnimationPlayer
+
 func _ready():
-	$AnimationPlayer.play("spawn")
+	scale=Vector2(0,0)
 	pass 
 
 var bounceCount = 0
@@ -27,9 +31,23 @@ func _on_Mushroom_body_entered(body):
 func _physics_process(delta):
 	if gimmickType == gimmickTypes.FLOWER:
 		position.y -= 20 * delta 
-		pass
 
+
+var playerisontop = false
 
 func _on_Timer_timeout():
 	call_deferred("queue_free")
+	pass # Replace with function body.
+
+func _on_plantLimiter_body_entered(body):
+	if body.is_in_group("player"):
+		print("Can't plant")
+		body.setAbleToPlant(false)
+	pass # Replace with function body.
+
+
+func _on_plantLimiter_body_exited(body):
+	if body.is_in_group("player"):
+		print("Can plant")
+		body.setAbleToPlant(true)
 	pass # Replace with function body.

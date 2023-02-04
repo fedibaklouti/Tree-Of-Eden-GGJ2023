@@ -17,6 +17,10 @@ onready var leafContainer =$container/HBoxContainer/leaf/Container
 
 func _process(delta):
 	health.frame = Player.health
+	if !Player.canPlant && $container/HBoxContainer.get_modulate() != Color(0,0,0):
+		$container/HBoxContainer.set_modulate(Color(0, 0,0))
+	if Player.canPlant && $container/HBoxContainer.get_modulate() != Color(1,1,1):
+		$container/HBoxContainer.set_modulate(Color(1, 1,1))
 	match Player.equipped.type:
 		"mushroom":
 			if !mushroomContainer.pressed:

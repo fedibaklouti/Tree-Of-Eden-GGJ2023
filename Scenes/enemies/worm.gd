@@ -19,7 +19,6 @@ func checkDirection ():
 	if ($casts/playerfrontCast.is_colliding() && speed != 180):
 		speed = 180
 		chasing=true
-		print("nigga im chasing")
 	elif (!$casts/playerfrontCast.is_colliding() && speed != 50):
 		speed = 50
 		chasing=false
@@ -31,7 +30,7 @@ func checkDirection ():
 		dir = -1
 		$casts/playerfrontCast.set_cast_to(Vector2(-150, 0))
 		$Sprite.set_flip_h(true)
-		print("Moving Left")
+
 	elif (!bottomcastback.is_colliding() || backcast.is_colliding()) && dir != 1:
 		if !chasing:
 			dir = 0
@@ -39,7 +38,7 @@ func checkDirection ():
 		dir = 1
 		$casts/playerfrontCast.set_cast_to(Vector2(150, 0))
 		$Sprite.set_flip_h(false)
-		print("Moving Right")
+
 	pass
 
 func _ready():
@@ -47,6 +46,8 @@ func _ready():
 	$idle.play("fly")
 	pass 
 
+func die():
+	queue_free()
 
 func _physics_process(delta):
 	checkDirection()

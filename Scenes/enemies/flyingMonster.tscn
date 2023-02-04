@@ -40,9 +40,10 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 1 ]
 }
 
-[node name="flyingMonster" type="Area2D"]
+[node name="flyingMonster" type="Area2D" groups=["enemy"]]
 position = Vector2( 0, -29.5612 )
 collision_layer = 2
+collision_mask = 17
 script = ExtResource( 2 )
 verticalOffset = -1.6
 
@@ -52,7 +53,6 @@ flip_h = true
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -60,3 +60,10 @@ anims/fly = SubResource( 2 )
 
 [node name="idle" type="AnimationPlayer" parent="."]
 anims/fly = SubResource( 3 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -88, -82.4388 )
+rect = Rect2( -10, -10, 200, 200 )
+
+[connection signal="area_entered" from="." to="." method="_on_flyingMonster_area_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
