@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/whip_crack.wav-d57c5e03a33d95dc6fe1dafeff0c6dcf.sample"
+
+[deps]
+
+source_file="res://Audio/sfx/whip_crack.wav"
+dest_files=[ "res://.import/whip_crack.wav-d57c5e03a33d95dc6fe1dafeff0c6dcf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

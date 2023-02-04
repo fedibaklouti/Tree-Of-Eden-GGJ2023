@@ -36,6 +36,9 @@ func _physics_process(delta):
 var playerisontop = false
 
 func _on_Timer_timeout():
+	$AnimationPlayer.play_backwards("spawn")
+	$CollisionShape2D.disabled=true
+	yield(get_tree().create_timer(0.5),"timeout")
 	call_deferred("queue_free")
 	pass # Replace with function body.
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/game jam 2 track 2 06-85.ogg-a3ba5ce0cc5b0ee01c94363fde75b78c.oggstr"
+
+[deps]
+
+source_file="res://Audio/music/game jam 2 track 2 06-85.ogg"
+dest_files=[ "res://.import/game jam 2 track 2 06-85.ogg-a3ba5ce0cc5b0ee01c94363fde75b78c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
