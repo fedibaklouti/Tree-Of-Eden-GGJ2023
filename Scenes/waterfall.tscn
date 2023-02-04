@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sprites/background/waterfall.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/waterfall.gd" type="Script" id=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 36, 400, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 1.2
+scale_random = 1.0
+color = Color( 0.639216, 0.976471, 1, 1 )
+
+[node name="waterfall" type="Polygon2D"]
+texture = ExtResource( 1 )
+polygon = PoolVector2Array( 64, 0, 0, 0, 0, 512, 64, 512 )
+script = ExtResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 32, 392 )
+z_index = 1
+amount = 500
+speed_scale = 1.5
+visibility_rect = Rect2( -31.9951, -399.951, 63.9883, 848.061 )
+process_material = SubResource( 1 )
