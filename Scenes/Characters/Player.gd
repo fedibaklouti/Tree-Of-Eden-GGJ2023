@@ -104,8 +104,24 @@ func plant():
 		plant_instance.animator.play("spawn")
 	pass
 	
-	
 
+func playSound(sound):
+	match sound:
+		"whip":
+			$playersfx.stream=preload("res://Audio/sfx/whip_crack.wav")
+			$playersfx.play()
+		"health":
+			$guisound.stream=preload("res://Audio/sfx/hp1.ogg")
+			$guisound.play()
+			pass
+		"spear":
+
+			$playersfx.stream=preload("res://Audio/sfx/punch2.ogg")
+			$playersfx.play()
+		"boing":
+			
+			$playersfx.stream=preload("res://Audio/sfx/pluck.ogg")
+			$playersfx.play()
 
 func _input(event):
 	if alive:
@@ -139,7 +155,7 @@ func bounce():
 
 	var currentVelocity = velocity.y
 	velocity.y = -currentVelocity*1.45
-	
+	playSound("boing")
 	pass
 
 
@@ -164,6 +180,10 @@ func jump():
 	
 func damageTracker():
 	if !isInvulnurable:
+		if $raycasts/hazardfloorcast.is_colliding():
+			getHit()
+			velocity.x += 400*dir
+			velocity.y -= 200
 		if $raycasts/frontcast.is_colliding():
 			getHit()
 			velocity.x -= 400
@@ -229,8 +249,8 @@ func death():
 var treeUVSpeed = 0
 	
 func _physics_process(delta):
-	if (PlayerAction != Player_Actions.IS_SPEARING || PlayerAction != Player_Actions.IS_WHIPPING) && $Sprite2.is_visible():
-		yield(get_tree().create_timer(0.2),"timeout")
+	if (PlayerAction != Player_Actions.IS_SPEARING && PlayerAction != Player_Actions.IS_WHIPPING) && $Sprite2.is_visible():
+		#yield(get_tree().create_timer(0.2),"timeout")
 		$Sprite2.hide()
 	AnimationManager()
 	if (zoom != camZoom):

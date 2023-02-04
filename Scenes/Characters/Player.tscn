@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Sprites/Player/player_without_bg.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Characters/Player.gd" type="Script" id=2]
+[ext_resource path="res://Audio/sfx/whip_crack.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 10, 12 )
@@ -231,7 +232,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=13]
 resource_name = "spear_attack"
-length = 0.3
+length = 0.35
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -280,6 +281,20 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "spear" ],
+"method": "playSound"
+} ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -386,6 +401,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true, false, true ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "whip" ],
+"method": "playSound"
+} ]
+}
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_mask = 9
@@ -395,23 +424,20 @@ script = ExtResource( 2 )
 texture = ExtResource( 1 )
 hframes = 12
 vframes = 8
-frame = 74
+frame = 43
 
 [node name="Sprite2" type="Sprite" parent="."]
-visible = false
 position = Vector2( 32, 0 )
 texture = ExtResource( 1 )
 hframes = 12
 vframes = 8
-frame = 56
+frame = 44
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, 4 )
 shape = SubResource( 5 )
 
 [node name="raycasts" type="Node2D" parent="."]
-visible = false
 
 [node name="frontcast" type="RayCast2D" parent="raycasts"]
 enabled = true
@@ -433,6 +459,14 @@ cast_to = Vector2( 0, 30 )
 collision_mask = 8
 collide_with_areas = true
 
+[node name="hazardfloorcast" type="RayCast2D" parent="raycasts"]
+enabled = true
+cast_to = Vector2( 0, 25 )
+collision_mask = 32
+__meta__ = {
+"_editor_description_": ""
+}
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
@@ -441,7 +475,7 @@ anims/invulframes = SubResource( 2 )
 
 [node name="attackhitbox" type="Node2D" parent="."]
 
-[node name="spearAttackHitbox" type="Area2D" parent="attackhitbox" groups=["damage"]]
+[node name="spearAttackHitbox" type="Area2D" parent="attackhitbox" groups=["damage", "speardmg"]]
 position = Vector2( 32, 0 )
 collision_layer = 16
 collision_mask = 2
@@ -477,6 +511,15 @@ anims/walking = SubResource( 7 )
 anims/walking_spear = SubResource( 10 )
 anims/walking_whip = SubResource( 14 )
 anims/whip_attack = SubResource( 17 )
+
+[node name="guisound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+bus = "SFX"
+
+[node name="playersfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+bus = "SFX"
 
 [connection signal="body_entered" from="attackhitbox/spearAttackHitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="body_entered" from="attackhitbox/whipAttackHitbox" to="." method="_on_Hitbox_body_entered"]

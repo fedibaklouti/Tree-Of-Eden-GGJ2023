@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/GUI/hud.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Gradient" id=5]
-colors = PoolColorArray( 0.179688, 0.105286, 0, 1, 0.417969, 0, 0, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.101563, 0.101563, 0.101563, 1 )
 
 [sub_resource type="GradientTexture2D" id=6]
 gradient = SubResource( 5 )
@@ -31,4 +31,4 @@ layer = 128
 PlayerNode = NodePath("../../Game/Player")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 1, 0.639216, 0.321569, 1 )
+color = Color( 0.270588, 0.270588, 0.270588, 1 )

@@ -9,7 +9,8 @@ func _ready():
 
 
 func _on_healthpickup_body_entered(body):
-	if body.is_in_group("player"):
+	if body.is_in_group("player") && body.health < 3:
 		body.health = 3
+		body.playSound("health")
 		queue_free()
 	pass # Replace with function body.

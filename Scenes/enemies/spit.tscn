@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/enemies/spit.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Enemies/spit.png" type="Texture" id=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+lifetime_randomness = 0.48
+emission_shape = 1
+emission_sphere_radius = 4.0
+flag_disable_z = true
+direction = Vector3( 50, 0, 0 )
+gravity = Vector3( -30, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color = Color( 0.117647, 0.788235, 0.560784, 1 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5, 4 )
+
+[node name="spit" type="Area2D"]
+collision_layer = 2
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 4 )
+texture = ExtResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 0, 4 )
+amount = 7
+local_coords = false
+process_material = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_spit_body_entered"]
