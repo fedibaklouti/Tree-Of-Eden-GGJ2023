@@ -12,11 +12,12 @@ export (float) var verticalOffset = 0.0
 
 var direction = 1
 
+var explosion = preload("res://Scenes/enemies/enemydeath.tscn").instance()
 
 func die():
+	$"..".add_child(explosion)
+	explosion.transform = transform
 	queue_free()
-	
-	pass
 	
 var spit = preload("res://Scenes/enemies/spit.tscn")
 

@@ -22,7 +22,7 @@ func checkDirection ():
 	elif (!$casts/playerfrontCast.is_colliding() && speed != 50):
 		speed = 50
 		chasing=false
-		print("fuck i lost ")
+
 	if (!bottomcastfront.is_colliding() || frontcast.is_colliding()) && dir != -1:
 		if !chasing:
 			dir = 0
@@ -46,7 +46,11 @@ func _ready():
 	$idle.play("fly")
 	pass 
 
+var explosion = preload("res://Scenes/enemies/enemydeath.tscn").instance()
+
 func die():
+	$"..".add_child(explosion)
+	explosion.transform = transform
 	queue_free()
 
 func _physics_process(delta):
@@ -54,3 +58,9 @@ func _physics_process(delta):
 	velocity.x = dir*speed
 	velocity.y += GRAVITY * delta
 	velocity = move_and_slide(velocity, UP, true, 4)
+
+
+func _on_whipdetector_area_entered(area):
+	if area.is_in_group("whipdmg"):
+		velocity.y -= 200
+	pass # Replace with function body.

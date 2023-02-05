@@ -85,7 +85,10 @@ func _ready():
 onready var floorcast = $raycasts/floorcast
 onready  var playersprite = $Sprite
 
+var currentindex = 0
+
 func setEquipped(index):
+	currentindex = index
 	playSound("switch_plant")
 	equipped = inventory[index]
 	print("equipped ", equipped)
@@ -133,6 +136,10 @@ func playSound(sound):
 			
 func _input(event):
 	if alive:
+		if Input.is_action_just_pressed("next_weap"):
+			setEquipped(wrapi(currentindex+1, 0, 3))
+		if Input.is_action_just_pressed("prev_weap"):
+			setEquipped(wrapi(currentindex-1, 0, 3))
 		if Input.is_action_just_pressed("equip_mushroom"):
 			setEquipped(0)
 		if Input.is_action_just_pressed("equip_leaf"):
@@ -231,6 +238,8 @@ func AnimationManager():
 		
 	
 	pass
+	
+var speedModifier = 1
 
 func playerControls():
 	if PlayerAction != Player_Actions.IS_PLANTING:
@@ -240,12 +249,14 @@ func playerControls():
 			jump()
 		if Input.is_action_pressed("move_left"):
 			dir = -1
+			speedModifier = Input.get_action_strength("move_left")
 			PlayerState = Player_States.IS_RUNNING
 		elif Input.is_action_pressed("move_right"):
 			dir = 1
+			speedModifier = Input.get_action_strength("move_right")
 			PlayerState = Player_States.IS_RUNNING
 		if dir != 0:
-			velocity.x = lerp(velocity.x, maxSpeed*dir, accel)
+			velocity.x = lerp(velocity.x, maxSpeed*dir*speedModifier, accel)
 		else:
 			velocity.x = lerp(velocity.x, 0, decel)
 	else:

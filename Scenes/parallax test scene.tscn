@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/treebarkcylinder.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Game.tscn" type="PackedScene" id=2]
@@ -6,9 +6,12 @@
 [ext_resource path="res://Scenes/GUI/hud.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Audio/music/game jam 2 track 2 06-85.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Fonts/ArchivoBlack-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Sprites/background/clouds1.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/ParallaxBG.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/background/clouds2.png" type="Texture" id=9]
 
 [sub_resource type="Gradient" id=5]
-colors = PoolColorArray( 0.46875, 0.392933, 0.285645, 1, 0.363281, 0, 0.323547, 1 )
+colors = PoolColorArray( 0, 0.450623, 0.539063, 1, 0.693159, 0.318329, 0.714844, 1 )
 
 [sub_resource type="GradientTexture2D" id=6]
 gradient = SubResource( 5 )
@@ -37,6 +40,7 @@ bg_color = Color( 0, 0, 0, 1 )
 [sub_resource type="DynamicFont" id=7]
 use_mipmaps = true
 use_filter = true
+extra_spacing_char = 3
 font_data = ExtResource( 6 )
 
 [sub_resource type="Animation" id=9]
@@ -52,7 +56,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0, 50 ]
+"values": [ 0, 30 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Control:modulate")
@@ -72,11 +76,44 @@ tracks/1/keys = {
 [node name="skylayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="TextureRect" type="TextureRect" parent="skylayer"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="skylayer"]
+
+[node name="TextureRect" type="TextureRect" parent="skylayer/ParallaxBackground"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = SubResource( 6 )
 expand = true
+
+[node name="ParallaxLayer" type="ParallaxBackground" parent="skylayer"]
+follow_viewport_enable = true
+scroll_offset = Vector2( 1, 0.2 )
+script = ExtResource( 8 )
+playernode = NodePath("../../ViewportContainer/Viewport/Game/Player")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="skylayer/ParallaxLayer"]
+motion_mirroring = Vector2( 2500, 0 )
+
+[node name="Sprite" type="Sprite" parent="skylayer/ParallaxLayer/ParallaxLayer"]
+modulate = Color( 0.968627, 0.866667, 1, 1 )
+position = Vector2( 0, 117 )
+texture = ExtResource( 7 )
+region_rect = Rect2( 842, 20, 185, 72 )
+
+[node name="ParallaxLayer2" type="ParallaxBackground" parent="skylayer"]
+follow_viewport_enable = true
+scroll_offset = Vector2( 1, 0.2 )
+script = ExtResource( 8 )
+playernode = NodePath("../../ViewportContainer/Viewport/Game/Player")
+speed = 25
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="skylayer/ParallaxLayer2"]
+motion_mirroring = Vector2( 2800, 0 )
+
+[node name="Sprite" type="Sprite" parent="skylayer/ParallaxLayer2/ParallaxLayer"]
+modulate = Color( 0.968627, 0.866667, 1, 1 )
+position = Vector2( 81, 21 )
+texture = ExtResource( 9 )
+region_rect = Rect2( 842, 20, 185, 72 )
 
 [node name="shadingLayer" type="CanvasLayer" parent="."]
 layer = 128
@@ -148,7 +185,8 @@ custom_styles/panel = SubResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 7 )
-text = "4400BC: Climbing the Mystic Tree"
+text = "At Eden's Edge
+400,000 years ago"
 align = 1
 valign = 1
 percent_visible = 0.0

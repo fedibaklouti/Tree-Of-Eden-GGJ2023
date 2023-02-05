@@ -491,17 +491,17 @@ anims/invulframes = SubResource( 2 )
 
 [node name="spearAttackHitbox" type="Area2D" parent="attackhitbox" groups=["damage", "speardmg"]]
 position = Vector2( 32, 0 )
-collision_layer = 16
+collision_layer = 80
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackhitbox/spearAttackHitbox"]
 shape = SubResource( 3 )
 disabled = true
 
-[node name="whipAttackHitbox" type="Area2D" parent="attackhitbox" groups=["damage"]]
+[node name="whipAttackHitbox" type="Area2D" parent="attackhitbox" groups=["damage", "whipdmg"]]
 position = Vector2( 32, 0 )
-collision_layer = 16
-collision_mask = 2
+collision_layer = 144
+collision_mask = 130
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackhitbox/whipAttackHitbox"]
 shape = SubResource( 4 )

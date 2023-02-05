@@ -19,6 +19,7 @@ bg_color = Color( 0, 0, 0, 1 )
 [sub_resource type="DynamicFont" id=8]
 use_mipmaps = true
 use_filter = true
+extra_spacing_char = 3
 font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=9]
@@ -34,7 +35,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0, 50 ]
+"values": [ 0, 30 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Control:modulate")
@@ -44,7 +45,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 2, 3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"transitions": PoolRealArray( 1, 2.73208, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -92,7 +93,8 @@ custom_styles/panel = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 8 )
-text = "4400 BC: Mystic Caves"
+text = "Mystic Caves
+400,000 years ago"
 align = 1
 valign = 1
 percent_visible = 0.0

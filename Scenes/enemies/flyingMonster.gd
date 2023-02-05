@@ -14,15 +14,15 @@ func _physics_process(delta):
 	position.x += 100 * delta * direction
 	position.y += verticalOffset
 
+var explosion = preload("res://Scenes/enemies/enemydeath.tscn").instance()
 
 func die():
+	$"..".add_child(explosion)
+	explosion.transform = transform
 	queue_free()
-	
-	pass
-
 
 func _on_flyingMonster_area_entered(area):
-	if area.is_in_group("damage"):
+	if area.is_in_group("whipdmg"):
 		die()
 	pass # Replace with function body.
 
