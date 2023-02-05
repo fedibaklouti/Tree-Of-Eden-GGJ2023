@@ -54,3 +54,8 @@ func _on_plantLimiter_body_exited(body):
 		print("Can plant")
 		body.setAbleToPlant(true)
 	pass # Replace with function body.
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
+	pass # Replace with function body.

@@ -163,9 +163,13 @@ anims/spawn = SubResource( 2 )
 position = Vector2( 4, -32 )
 shape = SubResource( 6 )
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+rect = Rect2( -85, -120, 180, 180 )
+
 [connection signal="body_entered" from="leaf/leafArea" to="leaf" method="_on_leafArea_body_entered"]
 [connection signal="body_exited" from="leaf/leafArea" to="leaf" method="_on_leafArea_body_exited"]
 [connection signal="body_entered" from="leaf2/leafArea" to="leaf2" method="_on_leafArea_body_entered"]
 [connection signal="body_exited" from="leaf2/leafArea" to="leaf2" method="_on_leafArea_body_exited"]
 [connection signal="body_entered" from="plantLimiter" to="." method="_on_plantLimiter_body_entered"]
 [connection signal="body_exited" from="plantLimiter" to="." method="_on_plantLimiter_body_exited"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

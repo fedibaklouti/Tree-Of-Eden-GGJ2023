@@ -92,6 +92,11 @@ monitorable = false
 position = Vector2( 4, -12 )
 shape = SubResource( 4 )
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -1.90735e-06, -8 )
+rect = Rect2( -25, -25, 50, 50 )
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Mushroom_body_entered"]
 [connection signal="body_entered" from="plantLimiter" to="." method="_on_plantLimiter_body_entered"]
 [connection signal="body_exited" from="plantLimiter" to="." method="_on_plantLimiter_body_exited"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
