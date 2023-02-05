@@ -61,6 +61,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 33, 34 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "die" ],
+"method": "playSound"
+} ]
+}
 
 [sub_resource type="Animation" id=11]
 resource_name = "fall"
@@ -424,7 +438,7 @@ script = ExtResource( 2 )
 texture = ExtResource( 1 )
 hframes = 12
 vframes = 8
-frame = 43
+frame = 33
 
 [node name="Sprite2" type="Sprite" parent="."]
 position = Vector2( 32, 0 )

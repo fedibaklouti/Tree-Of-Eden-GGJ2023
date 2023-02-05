@@ -86,6 +86,7 @@ onready var floorcast = $raycasts/floorcast
 onready  var playersprite = $Sprite
 
 func setEquipped(index):
+	playSound("switch_plant")
 	equipped = inventory[index]
 	print("equipped ", equipped)
 	
@@ -99,6 +100,7 @@ func plant():
 		$"..".add_child(plant_instance)
 		Animator.play("plant")
 		yield(get_tree().create_timer(0.5), "timeout")
+		canPlant = true
 		plant_instance.transform = currnetTransform
 		plant_instance.scale = Vector2(0,0)
 		plant_instance.animator.play("spawn")
@@ -113,16 +115,22 @@ func playSound(sound):
 		"health":
 			$guisound.stream=preload("res://Audio/sfx/hp1.ogg")
 			$guisound.play()
-			pass
 		"spear":
-
 			$playersfx.stream=preload("res://Audio/sfx/punch2.ogg")
 			$playersfx.play()
 		"boing":
-			
 			$playersfx.stream=preload("res://Audio/sfx/pluck.ogg")
 			$playersfx.play()
-
+		"die":
+			$playersfx.stream=preload("res://Audio/sfx/bodyfall.wav")
+			$playersfx.play()
+		"hit":
+			$playersfx.stream=preload("res://Audio/sfx/thump.ogg")
+			$playersfx.play()
+		"switch_plant":
+			$guisound.stream=preload("res://Audio/sfx/UI_TextCursor.wav")
+			$guisound.play()
+			
 func _input(event):
 	if alive:
 		if Input.is_action_just_pressed("equip_mushroom"):
@@ -165,6 +173,7 @@ func getHit():
 		PlayerAction = Player_Actions.IS_DAMAGED
 		isInvulnurable=true
 		if health > 0:
+			playSound("hit")
 			Animator.play("damaged")
 			$invulplayer.play("invulframes")
 			yield(get_tree().create_timer(2), "timeout")

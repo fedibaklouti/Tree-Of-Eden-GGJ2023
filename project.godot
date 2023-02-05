@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Game jam 2"
-run/main_scene="res://Scenes/parallax test scene.tscn"
+run/main_scene="res://Scenes/cavescene.tscn"
 config/icon="res://icon.png"
 
 [display]

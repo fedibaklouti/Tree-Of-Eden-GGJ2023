@@ -72,7 +72,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 84, 80 )
+extents = Vector2( 64, 44 )
 
 [node name="leaf" type="StaticBody2D"]
 collision_layer = 4
@@ -160,7 +160,7 @@ anims/spawn = SubResource( 2 )
 [node name="plantLimiter" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plantLimiter"]
-position = Vector2( 4, -32 )
+position = Vector2( 0, -28 )
 shape = SubResource( 6 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]

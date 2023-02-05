@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/cavelevel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Audio/music/game jam 2 track 1.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Scenes/GUI/hud.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Fonts/ArchivoBlack-Regular.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="Gradient" id=5]
 colors = PoolColorArray( 0, 0, 0, 1, 0.101563, 0.101563, 0.101563, 1 )
@@ -10,6 +12,42 @@ colors = PoolColorArray( 0, 0, 0, 1, 0.101563, 0.101563, 0.101563, 1 )
 gradient = SubResource( 5 )
 fill_from = Vector2( 0, 1 )
 fill_to = Vector2( 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=8]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/Panel/Label:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 50 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="Node2D" type="Node2D"]
 
@@ -31,4 +69,34 @@ layer = 128
 PlayerNode = NodePath("../../Game/Player")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.270588, 0.270588, 0.270588, 1 )
+color = Color( 0.462745, 0.462745, 0.462745, 1 )
+
+[node name="MUSIC" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+bus = "Music"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="Control" type="Control" parent="CanvasLayer2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer2/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 7 )
+
+[node name="Label" type="Label" parent="CanvasLayer2/Control/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 8 )
+text = "4400 BC: Mystic Caves"
+align = 1
+valign = 1
+percent_visible = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer2"]
+autoplay = "animation"
+anims/animation = SubResource( 9 )

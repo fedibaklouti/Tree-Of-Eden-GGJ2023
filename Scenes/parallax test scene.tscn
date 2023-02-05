@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/treebarkcylinder.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Game.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/treebarkcylinder.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/GUI/hud.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Audio/music/game jam 2 track 2 06-85.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Fonts/ArchivoBlack-Regular.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="Gradient" id=5]
 colors = PoolColorArray( 0.46875, 0.392933, 0.285645, 1, 0.363281, 0, 0.323547, 1 )
@@ -28,6 +30,42 @@ width = 224
 height = 800
 fill_from = Vector2( 1, 0 )
 fill_to = Vector2( 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=7]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/Panel/Label:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 50 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="Node2D" type="Node2D"]
 
@@ -88,5 +126,35 @@ layer = 128
 
 [node name="Control" parent="HUDLayer" instance=ExtResource( 4 )]
 PlayerNode = NodePath("../../ViewportContainer/Viewport/Game/Player")
+
+[node name="MUSIC" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+bus = "Music"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="Control" type="Control" parent="CanvasLayer2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer2/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 8 )
+
+[node name="Label" type="Label" parent="CanvasLayer2/Control/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 7 )
+text = "4400BC: Climbing the Mystic Tree"
+align = 1
+valign = 1
+percent_visible = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer2"]
+autoplay = "animation"
+anims/animation = SubResource( 9 )
 
 [editable path="ViewportContainer/Viewport/Game"]

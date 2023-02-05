@@ -12,4 +12,4 @@ dest_files=[ "res://.import/game jam 2 track 2 06-85.ogg-a3ba5ce0cc5b0ee01c94363
 [params]
 
 loop=true
-loop_offset=0
+loop_offset=6.85

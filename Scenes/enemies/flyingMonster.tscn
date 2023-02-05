@@ -65,5 +65,10 @@ anims/fly = SubResource( 3 )
 position = Vector2( -88, -82.4388 )
 rect = Rect2( -10, -10, 200, 200 )
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+rect = Rect2( -1000, -50, 2000, 100 )
+process_parent = true
+physics_process_parent = true
+
 [connection signal="area_entered" from="." to="." method="_on_flyingMonster_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
