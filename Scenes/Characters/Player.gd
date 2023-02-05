@@ -325,6 +325,7 @@ func _physics_process(delta):
 func _on_zoom_trigger_body_entered(body, extra_arg_0):
 	if body.is_in_group("player"):
 		camZoomSpeed = 0.005
+		canPlant = false
 		camZoom = extra_arg_0
 	pass # Replace with function body.
 
@@ -332,6 +333,7 @@ func _on_zoom_trigger_body_entered(body, extra_arg_0):
 func _on_zoom_trigger_body_exited(body):
 	if body.is_in_group("player"):
 		camZoom= 1
+		canPlant = true
 	pass # Replace with function body.
 
 

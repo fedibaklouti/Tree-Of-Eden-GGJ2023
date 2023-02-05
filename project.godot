@@ -21,8 +21,10 @@ _global_script_class_icons={
 [application]
 
 config/name="The Tree of Eden"
-run/main_scene="res://Scenes/cavescene.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://Scenes/intro.tscn"
+boot_splash/image="res://Sprites/TOE_White.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/windows_native_icon="res://gameicon (1).ico"
 
 [display]
 
