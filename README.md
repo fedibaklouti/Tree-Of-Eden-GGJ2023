@@ -10,7 +10,7 @@ This is our submission for Global Game Jam 2k23.
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://i.imgur.com/vw5tQ23.png)
+![App Screenshot](https://i.imgur.com/WA2apki.png)
+![App Screenshot](https://i.imgur.com/5bbjuEQ.png)
+![App Screenshot](https://i.imgur.com/fOsFoi6.png)
