@@ -42,6 +42,9 @@ There are 2 types of enemies in this game: **Ground Enemies** and **Airborne Ene
 - **LT**: Spear Attack
 - **RT**: Whip Attack
 
+##Trailer
+[![Tree of Eden Trailer](http://img.youtube.com/vi/RAQi3B3LP6o/0.jpg)](https://www.youtube.com/watch?v=RAQi3B3LP6o "Tree of Eden Trailer")
+
 ## Screenshots
 
 ![App Screenshot](https://i.imgur.com/vw5tQ23.png)
