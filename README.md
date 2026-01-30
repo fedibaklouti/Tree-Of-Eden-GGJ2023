@@ -52,3 +52,6 @@ There are 2 types of enemies in this game: **Ground Enemies** and **Airborne Ene
 - **B**: Plant
 - **LT**: Spear Attack
 - **RT**: Whip Attack
+
+## Play now!
+- [Download Windows Version](https://github.com/fedibaklouti/Tree-Of-Eden-GGJ2023/releases/download/GGJ2023-VERSION/The.Tree.of.Eden.exe)
