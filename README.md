@@ -8,7 +8,18 @@ This is our submission for Global Game Jam 2k23.
 ### Introduction 
 20 Years since the fall of humanity, a lone scientist sends himself to the past to recover humanity's final chance; The Tree of Eden. Tree of Eden is an action-adventure platformer about a lone scientist's journey through time to 400,000 BC to seek the Tree of Eden. Use the Mystical Seeds of Eden to grow your own mushrooms, trees and flowers to ascend across to the very top of the tree. But beware, many adversaries of nature will try to stop you in your path to save humanity.
 
-### How to play:
+
+## Trailer
+[<img width="640" height="360" alt="tree of eden trailer thumbnail" src="https://github.com/user-attachments/assets/340e00f2-f157-42b9-b0dc-445495ac67bf" />](https://www.youtube.com/embed/PdyTlh7GrYI)
+
+## Screenshots
+
+![App Screenshot](https://i.imgur.com/vw5tQ23.png)
+![App Screenshot](https://i.imgur.com/WA2apki.png)
+![App Screenshot](https://i.imgur.com/5bbjuEQ.png)
+![App Screenshot](https://i.imgur.com/fOsFoi6.png)
+
+## How to play:
 Also due to time constraints, we couldn't add a tutorial to the game so please read this: 
 
 In the game there are 3 seed types that you can plant: **Mushroom**, **Tree** and **Flower**.
@@ -41,14 +52,3 @@ There are 2 types of enemies in this game: **Ground Enemies** and **Airborne Ene
 - **B**: Plant
 - **LT**: Spear Attack
 - **RT**: Whip Attack
-
-## Trailer
-
-[![Tree of Eden Trailer](http://img.youtube.com/vi/RAQi3B3LP6o/0.jpg)](https://www.youtube.com/watch?v=RAQi3B3LP6o "Tree of Eden Trailer")
-
-## Screenshots
-
-![App Screenshot](https://i.imgur.com/vw5tQ23.png)
-![App Screenshot](https://i.imgur.com/WA2apki.png)
-![App Screenshot](https://i.imgur.com/5bbjuEQ.png)
-![App Screenshot](https://i.imgur.com/fOsFoi6.png)
