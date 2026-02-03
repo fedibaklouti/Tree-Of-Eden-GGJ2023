@@ -10,7 +10,7 @@ This is our submission for Global Game Jam 2k23.
 
 
 ## Trailer
-[<img width="640" height="360" alt="tree of eden trailer thumbnail" src="https://github.com/user-attachments/assets/340e00f2-f157-42b9-b0dc-445495ac67bf" />](https://www.youtube.com/embed/PdyTlh7GrYI)
+[<img width="640" height="360" alt="tree of eden trailer thumbnail" src="https://github.com/user-attachments/assets/340e00f2-f157-42b9-b0dc-445495ac67bf" />](https://www.youtube.com/embed/RAQi3B3LP6o)
 
 ## Screenshots
 
